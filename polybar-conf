@@ -34,12 +34,12 @@ padding          = 1
 ; module-margin-{left,right} (in spaces, padding for each module)
 module-margin    = 1
 ; Fonts are defined using <font-name>;<vertical-offset>
-font-0           = Iosevka:size=20;4
+font-0           = xos4 Terminus:size=24;4
 font-1           = FontAwesome:size=20;4
 ; Modules
-modules-left     =  clock battery
+modules-left     = clock battery
 modules-center   = bspwm
-modules-right    = 
+modules-right    = wifi sound backlight
 ; char between each module
 separator        = "|"
 ; Opacity value between 0.0 and 1.0 used on fade in/out
@@ -79,12 +79,15 @@ enable-click           = true
 fuzzy-match            = true
 label-monitor          = %name%
 label-focused          = 
+;label-focused          = ^ 
 label-focused-padding  = 1
 label-occupied         = 
+;label-occupied = o
 label-occupied-padding = 1
 label-empty            = 
+;label-empty = .
 label-empty-padding    = 1
-label-urgent           = 
+;label-urgent           = 
 
 [module/clock]
 type   = internal/date
@@ -104,3 +107,27 @@ format-full        = <label-full>
 label-charging     = %percentage%%+
 label-discharging  = %percentage%%
 label-full         = %percentage%%
+
+[module/backlight]
+type = custom/script
+; get brightness as <current>:<max>
+exec = echo "back=\"$(lux)\"\nback=back[39:].replace(';',':')\nprint(back)" | python3
+format = <label>
+label = %output%
+interval = 1
+
+[module/sound]
+type = internal/volume
+label-muted = (/)
+
+[module/wifi]
+type = internal/network
+interface = wlp1s0
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+label-connected-foreground = ${colors.fg}
+label-connected = %essid% | %downspeed%
+label-disconnected-foreground = ${colors.fg}
+label-disconnected = (/)
+
+

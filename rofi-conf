@@ -3,13 +3,13 @@ rofi.modi:                           window,run,ssh
 ! Window opacity
 rofi.opacity:                        100
 ! Window width
-rofi.width:                          23
+rofi.width:                          21
 ! Number of lines
 rofi.lines:                          1
 ! Number of columns
 rofi.columns:                        1
 ! Font to use
-rofi.font:                           Iosevka 20
+rofi.font:                           xos4 Terminus 18
 ! Color scheme for normal row
 rofi.color-normal:                   #2e3440,#d8dee9,#2e3440,#2e3440,#d8dee9
 ! Color scheme for urgent row
